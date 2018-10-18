@@ -1,0 +1,24 @@
+apiVersion: "config.istio.io/v1alpha2"
+kind: denier
+metadata:
+  name: denyreviewsv3handler
+spec:
+  status:
+    code: 7
+    message: Not allowed
+---
+apiVersion: "config.istio.io/v1alpha2"
+kind: checknothing
+metadata:
+  name: denyreviewsv3request
+spec:
+---
+apiVersion: "config.istio.io/v1alpha2"
+kind: rule
+metadata:
+  name: denyreviewsv3
+spec:
+  match: source.labels["app"]=="bill" && destination.labels["app"] == "billing-service-info" && destination.labels["version"] == "v3"
+  actions:
+  - handler: denyreviewsv3handler.denier
+    instances: [ denyreviewsv3request.checknothing ]

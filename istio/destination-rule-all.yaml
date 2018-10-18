@@ -1,0 +1,61 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: bill-service-destination-rule
+spec:
+  host: bill-service
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: customer-service-destination-rule
+spec:
+  host: customer-service
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: bill-summary-service-destination-rule
+spec:
+  host: bill-summary-service
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: billing-service-info-destination-rule
+spec:
+  host: billing-service-info-service
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+  - name: v3
+    labels:
+      version: v3
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: transaction-service-destination-rule
+spec:
+  host: transaction-service
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+---

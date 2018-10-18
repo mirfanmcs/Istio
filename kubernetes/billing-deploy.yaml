@@ -1,0 +1,334 @@
+##################################################################################################
+# Bill service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: bill-service
+  labels:
+    app: bill-service
+spec:
+  ports:
+  - port: 9004
+    name: http
+  selector:
+    app: bill
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bill-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bill
+  template:
+    metadata:
+      labels:
+        app: bill
+        version: v1
+    spec:
+      containers:
+      - name: bill
+        image: mirfanmcs/bill
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9004
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9004
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9004
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 15
+---
+##################################################################################################
+# Customer service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: customer-service
+  labels:
+    app: customer-service
+spec:
+  ports:
+  - port: 9001
+    name: http
+  selector:
+    app: customer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customer
+  template:
+    metadata:
+      labels:
+        app: customer
+        version: v1
+    spec:
+      containers:
+      - name: customer
+        image: mirfanmcs/customer
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9001
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9001
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9001
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 15
+---
+##################################################################################################
+# Bill Summary service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: bill-summary-service
+  labels:
+    app: bill-summary-service
+spec:
+  ports:
+  - port: 9002
+    name: http
+  selector:
+    app: bill-summary
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bill-summary-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bill-summary
+  template:
+    metadata:
+      labels:
+        app: bill-summary
+        version: v1
+    spec:
+      containers:
+      - name: bill-summary
+        image: mirfanmcs/bill-summary
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9002
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9002
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9002
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 15
+---
+##################################################################################################
+# Bill Servie Info service V1
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: billing-service-info-service
+  labels:
+    app: billing-service-info-service
+spec:
+  ports:
+  - port: 9003
+    name: http
+  selector:
+    app: billing-service-info
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: billing-service-info-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: billing-service-info
+  template:
+    metadata:
+      labels:
+        app: billing-service-info
+        version: v1
+    spec:
+      containers:
+      - name: billing-service-info-v1
+        image: mirfanmcs/billing-service-info:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9003
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9003
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9003
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 15
+---
+# Bill Servie Info service V2 - Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: billing-service-info-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: billing-service-info
+  template:
+    metadata:
+      labels:
+        app: billing-service-info
+        version: v2
+    spec:
+      containers:
+      - name: billing-service-info-v2
+        image: mirfanmcs/billing-service-info:v2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9003
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9003
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9003
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 15
+---
+# Bill Servie Info service V3 - Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: billing-service-info-v3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: billing-service-info
+  template:
+    metadata:
+      labels:
+        app: billing-service-info
+        version: v3
+    spec:
+      containers:
+      - name: billing-service-info-v3
+        image: mirfanmcs/billing-service-info:v3
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9003
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9003
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9003
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 15
+---
+##################################################################################################
+# Transaction service
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: transaction-service
+  labels:
+    app: transaction-service
+spec:
+  ports:
+  - port: 9000
+    name: http
+  selector:
+    app: transaction
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transaction-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transaction
+  template:
+    metadata:
+      labels:
+        app: transaction
+        version: v1
+    spec:
+      containers:
+      - name: transaction
+        image: mirfanmcs/transaction
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9000
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9000
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9000
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 15
+---

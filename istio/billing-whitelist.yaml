@@ -1,0 +1,26 @@
+apiVersion: config.istio.io/v1alpha2
+kind: listchecker
+metadata:
+  name: whitelist
+spec:
+  overrides: ["v1", "v2"]  
+  blacklist: false
+---
+apiVersion: config.istio.io/v1alpha2
+kind: listentry
+metadata:
+  name: appversion
+spec:
+  value: destination.labels["version"]
+---
+apiVersion: config.istio.io/v1alpha2
+kind: rule
+metadata:
+  name: checkversion
+spec:
+  match: source.labels["app"]=="bill"
+  actions:
+  - handler: whitelist.listchecker
+    instances:
+    - appversion.listentry
+---

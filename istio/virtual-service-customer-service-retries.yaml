@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: customer-service-virtual-service
+spec:
+  hosts:
+  - customer-service
+  http:
+  - route:
+    - destination:
+        host: customer-service
+        subset: v1
+    retries:
+      attempts: 3
+      perTryTimeout: 2s
+

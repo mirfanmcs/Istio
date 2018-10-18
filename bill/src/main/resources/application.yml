@@ -1,0 +1,18 @@
+server:
+  error:
+    whitelabel:
+      enabled: false
+  port: ${port:9004}
+spring:
+  application:
+    name: bill
+  profiles:
+    active: development
+security:
+  basic:
+    enabled: false # turn off securing our application endpoints
+management:
+  security:
+    enabled: false
+
+

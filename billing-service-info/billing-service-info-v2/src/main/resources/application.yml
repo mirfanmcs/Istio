@@ -1,0 +1,37 @@
+server:
+  error:
+    whitelabel:
+      enabled: false
+  port: ${port:9003}
+spring:
+  h2:
+      console:
+        enabled: true
+        settings:
+          web-allow-others: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:h2:mem:billing-service-info-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    platform: h2
+  application:
+    name: billing-service-info
+  profiles:
+    active: development
+# Access H2 console as follows -> http://localhost:9003/h2-console/
+# Use JDBC URL as follows when you define database name = "billing-service-info-db"
+# jdbc:h2:mem:billing-service-info-db
+
+security:
+  basic:
+    enabled: false # turn off securing our application endpoints
+
+management:
+  security:
+    enabled: false
+
+
