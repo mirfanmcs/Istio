@@ -72,6 +72,12 @@ All Pods should either be completed or running. Alls services deployed.
 
 `$ kubectl apply -f <(istioctl kube-inject -f kubernetes/billing-deploy.yaml)`
 
+Here we are calling `istioctl kube-inject` to manually inject Envoy containers in our application pod before deploying them. 
+
+You can inject Envoy sidecar container automatically by setting `istio-injection=enabled` on the namespace you want automatic injection. Below command will enable automatic injection in `default` namespae:
+
+`$ kubectl label namespace default istio-injection=enabled`
+
 
 ## Expose Bill Service 
 
