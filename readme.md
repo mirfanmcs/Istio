@@ -42,7 +42,7 @@ Recommended option is the set path in your .bash_profile file:
 
 ### Install Istio on Kubernetes cluster 
 
-CCD into the Istio insall directory on your machine.
+CD into the Istio insall directory on your machine.
 
 Deploy Istio Custom Resource Definition:
 
