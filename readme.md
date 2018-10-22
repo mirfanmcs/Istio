@@ -523,4 +523,4 @@ CD into the Istio insall directory on your machine.
 
 Delete fortio load testing client:
 
-`$ kubectl delete -f <(istioctl kube-inject -f samples/httpbin/sample-client/fortio-deploy.yaml)`
+`$ kubectl delete -f samples/httpbin/sample-client/fortio-deploy.yaml`
