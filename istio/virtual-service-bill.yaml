@@ -13,6 +13,6 @@ spec:
         prefix: /bill
     route:
     - destination:
-        host: bill-service
+        host: bill
         port:
           number: 9004
