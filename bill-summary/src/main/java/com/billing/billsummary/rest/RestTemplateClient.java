@@ -23,10 +23,10 @@ public class RestTemplateClient {
     @Autowired
     RestTemplate restTemplate;
 
-    @Value("${TRANSACTION_SERVICE_PORT:9000}")
+    @Value("${TRANSACTION_SERVICE_PORT_HTTP:9000}")
     private String transactionServicePort;
 
-    private static final String TRANSACTION_SERVICE_URL = "http://transaction-service";
+    private static final String TRANSACTION_SERVICE_URL = "http://transaction";
 
     public List<TransactionResponseDto> getTransactions(String accountId) {
         TransactionResponseDto[] TransactionResponseDtos = restTemplate.getForObject(TRANSACTION_SERVICE_URL + ":" + transactionServicePort + "/transaction/" + accountId, TransactionResponseDto[].class);
