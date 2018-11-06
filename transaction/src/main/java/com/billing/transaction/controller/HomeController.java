@@ -17,7 +17,7 @@ public class HomeController {
     @Autowired
     private TransactionService transactionService;
 
-    @GetMapping(path="/transaction/{accountId}")
+    @GetMapping(path="/{accountId}")
     public ResponseEntity<List<TransactionResponseDto>> getTransactions(@PathVariable String accountId) {
         return new ResponseEntity<>(transactionService.getTransactions(accountId), HttpStatus.OK);
     }
