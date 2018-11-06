@@ -16,7 +16,7 @@ public class HomeController {
     @Autowired
     private BillSummaryService billSummaryService;
 
-    @GetMapping(path="/billsummary/{accountId}")
+    @GetMapping(path="/{accountId}")
     public ResponseEntity<BillSummaryDto> getBillSummary(@PathVariable String accountId) {
         return new ResponseEntity<>(billSummaryService.getBillSummary(accountId), HttpStatus.OK);
     }
