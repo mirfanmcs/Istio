@@ -4,11 +4,11 @@ metadata:
   name: customer-service-virtual-service
 spec:
   hosts:
-  - customer-service
+  - customer
   http:
   - route:
     - destination:
-        host: customer-service
+        host: customer
         subset: v1
     retries:
       attempts: 3
