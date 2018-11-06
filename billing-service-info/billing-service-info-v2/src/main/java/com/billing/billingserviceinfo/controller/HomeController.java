@@ -16,7 +16,7 @@ public class HomeController {
     @Autowired
     private BillingServiceInfoService billingServiceInfoService;
 
-    @GetMapping(path="/billingserviceinfo/{accountId}")
+    @GetMapping(path="/{accountId}")
     public ResponseEntity<BillingServiceInfoDto> getBillingServiceInfo(@PathVariable String accountId) {
         return new ResponseEntity<>(billingServiceInfoService.getBillingServiceInfo(accountId), HttpStatus.OK);
     }
