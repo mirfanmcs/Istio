@@ -29,7 +29,7 @@ public class RestTemplateClient {
     private static final String TRANSACTION_SERVICE_URL = "http://transaction";
 
     public List<TransactionResponseDto> getTransactions(String accountId) {
-        TransactionResponseDto[] TransactionResponseDtos = restTemplate.getForObject(TRANSACTION_SERVICE_URL + ":" + transactionServicePort + "/transaction/" + accountId, TransactionResponseDto[].class);
+        TransactionResponseDto[] TransactionResponseDtos = restTemplate.getForObject(TRANSACTION_SERVICE_URL + ":" + transactionServicePort + "/" + accountId, TransactionResponseDto[].class);
 
         return Arrays.asList(TransactionResponseDtos);
 
