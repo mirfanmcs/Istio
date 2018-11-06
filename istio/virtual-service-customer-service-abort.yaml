@@ -4,7 +4,7 @@ metadata:
   name: customer-service-virtual-service
 spec:
   hosts:
-  - customer-service
+  - customer
   http:
   - fault:
       abort:
@@ -12,7 +12,7 @@ spec:
         httpStatus: 400
     route:
     - destination:
-        host: customer-service
+        host: customer
         subset: v1
 
 
