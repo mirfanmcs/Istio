@@ -3,7 +3,7 @@ kind: DestinationRule
 metadata:
   name: bill-service-destination-rule
 spec:
-  host: bill-service
+  host: bill
   subsets:
   - name: v1
     labels:
@@ -14,7 +14,7 @@ kind: DestinationRule
 metadata:
   name: customer-service-destination-rule
 spec:
-  host: customer-service
+  host: customer
   subsets:
   - name: v1
     labels:
@@ -25,7 +25,7 @@ kind: DestinationRule
 metadata:
   name: bill-summary-service-destination-rule
 spec:
-  host: bill-summary-service
+  host: bill-summary
   subsets:
   - name: v1
     labels:
@@ -36,7 +36,7 @@ kind: DestinationRule
 metadata:
   name: billing-service-info-destination-rule
 spec:
-  host: billing-service-info-service
+  host: billing-service-info
   subsets:
   - name: v1
     labels:
@@ -53,7 +53,7 @@ kind: DestinationRule
 metadata:
   name: transaction-service-destination-rule
 spec:
-  host: transaction-service
+  host: transaction
   subsets:
   - name: v1
     labels:
