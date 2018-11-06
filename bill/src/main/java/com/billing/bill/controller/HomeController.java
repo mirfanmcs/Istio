@@ -18,7 +18,7 @@ public class HomeController {
     @Autowired
     private BillService billService;
 
-    @GetMapping(path="/bill/{accountId}")
+    @GetMapping(path="/{accountId}")
     public ResponseEntity<BillDto> getBillSummary(@PathVariable String accountId,@RequestHeader HttpHeaders requestHeaders) {
         return new ResponseEntity<>(billService.getBill(accountId, requestHeaders), HttpStatus.OK);
     }
