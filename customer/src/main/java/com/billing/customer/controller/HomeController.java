@@ -16,7 +16,7 @@ public class HomeController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping(path="/customer/{accountId}")
+    @GetMapping(path="/{accountId}")
     public ResponseEntity<CustomerResponseDto> getCustomer(@PathVariable String accountId) {
         return new ResponseEntity<>(customerService.getCustomer(accountId), HttpStatus.OK);
     }
