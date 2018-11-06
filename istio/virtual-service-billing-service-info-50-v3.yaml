@@ -4,14 +4,14 @@ metadata:
   name: billing-service-info-virtual-service
 spec:
   hosts:
-    - billing-service-info-service
+    - billing-service-info
   http:
   - route:
     - destination:
-        host: billing-service-info-service
+        host: billing-service-info
         subset: v1
       weight: 50
     - destination:
-        host: billing-service-info-service
+        host: billing-service-info
         subset: v3
       weight: 50
