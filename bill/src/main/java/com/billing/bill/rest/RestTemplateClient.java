@@ -28,38 +28,38 @@ public class RestTemplateClient {
 
     //Injecting Environment variables
 
-    @Value("${CUSTOMER_SERVICE_PORT:9001}")
+    @Value("${CUSTOMER_SERVICE_PORT_HTTP:9001}")  //Env variable provided by Kubernetes
     private String customerServicePort;
 
-    @Value("${BILL_SUMMARY_SERVICE_PORT:9002}")
+    @Value("${BILL_SUMMARY_SERVICE_PORT_HTTP:9002}")  //Env variable provided by Kubernetes
     private String billSummaryPort;
 
-    @Value("${BILLING_SERVICE_INFO_SERVICE_PORT:9003}")
+    @Value("${BILLING_SERVICE_INFO_SERVICE_PORT_HTTP:9003}")  //Env variable provided by Kubernetes
     private String billingServiceInfoPort;
 
-    @Value("${TRANSACTION_SERVICE_PORT:9000}")
+    @Value("${TRANSACTION_SERVICE_PORT_HTTP:9000}")  //Env variable provided by Kubernetes
     private String transactionServicePort;
 
 
-    private static final String CUSTOMER_SERVICE_URL = "http://customer-service";
-    private static final String BILL_SUMMARY_SERVICE_URL = "http://bill-summary-service";
-    private static final String BILLING_SERVICE_INFO_SERVICE_URL = "http://billing-service-info-service";
-    private static final String TRANSACTION_SERVICE_URL = "http://transaction-service";
+    private static final String CUSTOMER_SERVICE_URL = "http://customer";
+    private static final String BILL_SUMMARY_SERVICE_URL = "http://bill-summary";
+    private static final String BILLING_SERVICE_INFO_SERVICE_URL = "http://billing-service-info";
+    private static final String TRANSACTION_SERVICE_URL = "http://transaction";
 
     public CustomerResponseDto getCustomer(String accountId,HttpHeaders requestHeaders) {
-        return  restTemplate.getForObject(CUSTOMER_SERVICE_URL + ":" + customerServicePort + "/customer/" + accountId, CustomerResponseDto.class,requestHeaders);
+        return  restTemplate.getForObject(CUSTOMER_SERVICE_URL + ":" + customerServicePort + "/" + accountId, CustomerResponseDto.class,requestHeaders);
     }
 
     public BillSummaryDto getBillSummary(String accountId,HttpHeaders requestHeaders) {
-        return  restTemplate.getForObject(BILL_SUMMARY_SERVICE_URL + ":" + billSummaryPort + "/billsummary/" + accountId, BillSummaryDto.class,requestHeaders);
+        return  restTemplate.getForObject(BILL_SUMMARY_SERVICE_URL + ":" + billSummaryPort + "/" + accountId, BillSummaryDto.class,requestHeaders);
     }
 
     public BillingServiceInfoDto getBillingServiceInfo(String accountId, HttpHeaders requestHeaders) {
-        return  restTemplate.getForObject(BILLING_SERVICE_INFO_SERVICE_URL + ":" + billingServiceInfoPort + "/billingserviceinfo/" + accountId, BillingServiceInfoDto.class,requestHeaders);
+        return  restTemplate.getForObject(BILLING_SERVICE_INFO_SERVICE_URL + ":" + billingServiceInfoPort + "/" + accountId, BillingServiceInfoDto.class,requestHeaders);
     }
 
     public List<TransactionResponseDto> getTransactions(String accountId,HttpHeaders requestHeaders) {
-        TransactionResponseDto[] TransactionResponseDtos = restTemplate.getForObject(TRANSACTION_SERVICE_URL + ":" + transactionServicePort + "/transaction/" + accountId, TransactionResponseDto[].class,requestHeaders);
+        TransactionResponseDto[] TransactionResponseDtos = restTemplate.getForObject(TRANSACTION_SERVICE_URL + ":" + transactionServicePort + "/" + accountId, TransactionResponseDto[].class,requestHeaders);
 
         return Arrays.asList(TransactionResponseDtos);
 
