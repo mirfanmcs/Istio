@@ -4,9 +4,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: bill-service
+  name: bill
   labels:
-    app: bill-service
+    app: bill
 spec:
   ports:
   - port: 9004
@@ -56,9 +56,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: customer-service
+  name: customer
   labels:
-    app: customer-service
+    app: customer
 spec:
   ports:
   - port: 9001
@@ -108,9 +108,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bill-summary-service
+  name: bill-summary
   labels:
-    app: bill-summary-service
+    app: bill-summary
 spec:
   ports:
   - port: 9002
@@ -160,9 +160,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: billing-service-info-service
+  name: billing-service-info
   labels:
-    app: billing-service-info-service
+    app: billing-service-info
 spec:
   ports:
   - port: 9003
@@ -286,9 +286,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: transaction-service
+  name: transaction
   labels:
-    app: transaction-service
+    app: transaction
 spec:
   ports:
   - port: 9000
