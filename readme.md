@@ -89,7 +89,7 @@ SSH into minikube:
 
 Run Curl with Bill service IP address and port:
 
-`$ curl http://10.104.42.80:9004/bill/123`
+`$ curl http://10.104.42.80:9004/123`
 
 ### Call Bill Service outside of cluster 
 
@@ -97,7 +97,7 @@ Run Curl with Bill service IP address and port:
 
 `$ billpod=$(kubectl get po --selector=app=bill -o jsonpath={.items..metadata.name})`
 
-`$ kubectl expose pod $billpod --name=bill-service-external  --type=NodePort --port=9004 --target-port=9004`
+`$ kubectl expose pod $billpod --name=bill-external  --type=NodePort --port=9004 --target-port=9004`
 
 Note cluster ip address:
 
@@ -105,7 +105,7 @@ Note cluster ip address:
 
 Call the bill service with the cluster IP and NodePort:
 
- `$ curl http://192.168.99.100:30470/bill/123`
+ `$ curl http://192.168.99.100:30470/123`
 
  You can also access the same URL in your browser or Postman.
 
@@ -122,7 +122,7 @@ Configure bill virtual service to be called through Gateway:
 
 Call the bill service with the Gateway URL:
 
-`http://192.168.99.100:31380/bill/123`
+`http://192.168.99.100:31380/123`
 
 There are two parts of URL. IP address and port. To get URL and port, run following command:
 
@@ -140,7 +140,7 @@ Note that we are using host as `*` in the hosts field in Gateway and Virtual Ser
 
 For example:
 
-`curl -H "Host: bill-service.com" http://192.168.99.100:31380/bill/123`
+`curl -H "Host: bill-service.com" http://192.168.99.100:31380/123`
 
 In Chrome, you can enable the extension (e.g. ModHeader) to pass Host header. Postman doesn't allow you to pass Host header. If you are using Postman chrome extension, you can add "Postman Interceptor" chrome extension to pass Host header.  
 
@@ -242,7 +242,7 @@ Log in to the fortio pod and make 3 concurrent connections (-c 3) and send 20 re
 
 `$ FORTIO_POD=$(kubectl get pod | grep fortio | awk '{ print $1 }')`
 
-`$ kubectl exec -it $FORTIO_POD  -c fortio /usr/local/bin/fortio -- load -c 3 -qps 0 -n 20 -loglevel Warning  http://customer-service:9001/customer/123`
+`$ kubectl exec -it $FORTIO_POD  -c fortio /usr/local/bin/fortio -- load -c 3 -qps 0 -n 20 -loglevel Warning  http://customer-service:9001/123`
 
 
 
@@ -330,11 +330,11 @@ In your production Istio deployment you should expose it via service and restric
 
 In the Prometheus UI, enter `istio_requests_total` in the input box and click Execute button. You should see result. 
 
-Enter query `istio_requests_total{destination_service="bill-service.default.svc.cluster.local"}` and see result of bill-service. 
+Enter query `istio_requests_total{destination_service="bill.default.svc.cluster.local"}` and see result of bill-service. 
 
-To see total count of all requests to v3 of the billing-service-info-service, enter this query `istio_requests_total{destination_service="billing-service-info-service.default.svc.cluster.local", destination_version="v3"}`
+To see total count of all requests to v3 of the billing-service-info, enter this query `istio_requests_total{destination_service="billing-service-info.default.svc.cluster.local", destination_version="v3"}`
 
-To see rate of requests over the past 10 minutes to all instances of the bill-service, enter this query `rate(istio_requests_total{destination_service=~"bill-service.*", response_code="200"}[10m])`
+To see rate of requests over the past 10 minutes to all instances of the bill-service, enter this query `rate(istio_requests_total{destination_service=~"bill.*", response_code="200"}[10m])`
 
 For lean more about Prometheus query see this link:
 
