@@ -4,7 +4,7 @@ metadata:
   name: customer-service-virtual-service
 spec:
   hosts:
-  - customer-service
+  - customer
   http:
   - fault:
       delay:
@@ -12,6 +12,6 @@ spec:
         fixedDelay: 7s
     route:
     - destination:
-        host: customer-service
+        host: customer
         subset: v1
 
