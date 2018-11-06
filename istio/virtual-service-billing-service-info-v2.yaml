@@ -4,7 +4,7 @@ metadata:
   name: billing-service-info-virtual-service
 spec:
   hosts:
-    - billing-service-info-service
+    - billing-service-info
   http:
   - match:
     - headers:
@@ -12,9 +12,9 @@ spec:
           exact: "123456"
     route:
     - destination:
-        host: billing-service-info-service
+        host: billing-service-info
         subset: v2
   - route:
     - destination:
-        host: billing-service-info-service
+        host: billing-service-info
         subset: v1
