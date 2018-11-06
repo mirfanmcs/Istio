@@ -23,7 +23,7 @@ public class RestTemplateClient {
     @Autowired
     RestTemplate restTemplate;
 
-    @Value("${TRANSACTION_SERVICE_PORT_HTTP:9000}")
+    @Value("${TRANSACTION_SERVICE_PORT_HTTP:9000}")   //Env variable provided by Kubernetes
     private String transactionServicePort;
 
     private static final String TRANSACTION_SERVICE_URL = "http://transaction";
