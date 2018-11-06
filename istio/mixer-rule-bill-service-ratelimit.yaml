@@ -11,14 +11,14 @@ spec:
     # The first matching override is applied.
     # A requestcount instance is checked against override dimensions.
     overrides:
-    # The following override applies to 'bill-service' when
+    # The following override applies to 'bill' when
     # the source is a specific ip address.
     - dimensions:
         destination: bill
         source: "10.10.1.1"
       maxAmount: 5
       validDuration: 5s
-    # The following override applies to 'bill-service' regardless
+    # The following override applies to 'bill' regardless
     # of the source.
     - dimensions:
         destination: bill
@@ -57,7 +57,7 @@ spec:
   - name: request-count
     namespace: istio-system
   services:
-  - name: bill-service
+  - name: bill
     namespace: default
     #  - service: '*'  # Uncomment this to bind *all* services to request-count
 ---
