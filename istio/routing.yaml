@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: entry-route
+  namespace: default
+spec:
+  gateways:
+  - billing-gateway  
+  hosts:
+  - "*"   #example.com
+  http:
+  - match:
+    - uri:
+        prefix: "/customer"
+    rewrite:
+      uri: "/"
+    route:
+      - destination:
+          host: customer
+          port:
+            number: 9001
+        weight: 100
+  - match:
+    - uri:
+        prefix: "/transaction"
+    rewrite:
+      uri: "/"
+    route:
+      - destination:
+          host: transaction
+          port:
+            number: 9000
+        weight: 100
