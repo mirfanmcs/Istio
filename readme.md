@@ -153,6 +153,23 @@ https://stackoverflow.com/questions/43156023/what-is-http-host-header
 
 ## Traffic Management 
 
+### Path Based Routing
+
+You can route call to customer service and transaction service based on path in the URL.
+
+Deploy routing rule:
+
+`$ kubectl apply -f istio/routing.yaml`
+
+Call Customer service:
+
+`$ curl http://192.168.99.100:31380/customer/123`
+
+Call Transaction service:
+
+`$ curl http://192.168.99.100:31380/transaction/123`
+
+
 ### Destination Rules 
 
 When you refresh the browser you will notice that serviceinfo.serviceVersion will be switching between v1/v2/v3. This is because we deployed three versions of billing-service-info and exposed through one billing-service-info-service which load balance traffic among version v1/v2/v3. 
